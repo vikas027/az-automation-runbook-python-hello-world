@@ -1,0 +1,44 @@
+## TOOLS
+[tools]
+python = "3.8.20"
+uv = "0.8.14"
+
+## TASKS
+[tasks.setup]
+description = 'Clean'
+run = [
+    'mise install',
+    'uv --version',
+    'python --version'
+]
+dir = "{{cwd}}"
+
+[tasks.clean]
+description = 'Clean'
+run = [
+    'rm -rf ./dist',
+    'pip list | grep hello-world && pip uninstall -y hello-world || echo'
+]
+dir = "hello-world"
+alias = 'c'
+
+[tasks.build]
+description = 'Build the package'
+depends = ['clean']
+run = "python -m build"
+dir = "hello-world"
+alias = 'b'
+
+[tasks.install]
+description = 'Install the package'
+depends = ['build']
+run = "pip install ./dist/hello_world-0.1.0-py3-none-any.whl"
+dir = "hello-world"
+alias = 'i'
+
+[tasks.test]
+description = 'Test the package'
+depends = ['install']
+run = "hello-world"
+dir = "{{cwd}}"
+alias = 't'
