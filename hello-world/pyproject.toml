@@ -1,0 +1,17 @@
+[project]
+name = "hello-world"
+version = "0.1.0"
+description = "This is a hello-world package"
+readme = "README.md"
+authors = [
+    { name = "Vikas Kumar", email = "vikas@vikas.com" }
+]
+requires-python = ">=3.7"
+dependencies = []
+
+[project.scripts]
+hello-world = "hello_world:main"
+
+[build-system]
+requires = ["uv_build>=0.8.14,<0.9.0"]
+build-backend = "uv_build"
